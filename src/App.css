@@ -1,3 +1,19 @@
+.HomeClass, .aboutClass {
+  position: fixed;
+  left: 5%;
+  top: 15vh;
+  width: 90%;
+  height: 80vh;
+}
+
+
+body {
+  background: conic-gradient(from 135deg, #444, #333);
+  background-size: cover;
+  height: 100vh;
+  color: blue;
+}
+
 .App {
   text-align: center;
 }
