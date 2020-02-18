@@ -13,12 +13,21 @@ class BioProfile extends React.Component{
       uncannyThanks: 5
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleProps = this.handleProps.bind(this);
   }
   handleClick(){
     let number = this.state.garyThanks
     this.setState({garyThanks: number +1});
     console.log('formVisibleOnPage is currently set to:' + this.state.garyThanks);
   }
+
+  handleProps(){
+    console.log(this.props);
+    let test = this.props.highlightedID
+    console.log(test);
+  }
+
+
 
   render(){
 
@@ -28,6 +37,9 @@ class BioProfile extends React.Component{
       <h1 className='BioProfileH1'>Profile: x.person</h1>
       <h3 className='BioProfileH3'>Appreciation:<span>{this.state.garyThanks}</span></h3>
       <button onClick={this.handleClick}>Thanks</button>
+
+      <button onClick={this.handleProps}>Props</button>
+
 
 
       <style jsx>{`
@@ -57,7 +69,7 @@ class BioProfile extends React.Component{
   }
 
   BioProfile.propTypes = {
-    onNewTicketCreation: PropTypes.func
+    highlightedID: PropTypes.string
   };
 
 

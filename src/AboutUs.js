@@ -14,18 +14,25 @@ class AboutUs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-  
+      highlightedID: null
     };
+    this.changeHighlightedID = this.changeHighlightedID.bind(this);
 
   }
 
-
-
-
-
+  changeHighlightedID(e){
+    let currentTargetID = e.currentTarget.id
+    this.state.highlightedID = currentTargetID
+    this.setState({highlightedID: currentTargetID});
+    
+    let idOfThing = document.getElementById(currentTargetID)
+    idOfThing.style.color = 'red';
+    idOfThing.classList.add('hoverClass');
+    let test = document.querySelector('.bioPic');
+    test.style.backgroundImage = `url(${currentTargetID})`;
+  }
 
   render(){
-
 
     function mouseIn0() {
       let idOfThing = document.getElementById('0');
@@ -36,14 +43,6 @@ class AboutUs extends React.Component {
       test.style.backgroundImage = `url(${Gary})`;
     }
 
-    function mouseOut0() {
-      let idOfThing = document.getElementById('0');
-      idOfThing.classList.remove('hoverClass');
-
-      idOfThing.style.color = 'blue';
-    }
-
-
     function mouseIn1() {
       let idOfThing = document.getElementById('1');
       idOfThing.style.color = 'red';
@@ -53,28 +52,14 @@ class AboutUs extends React.Component {
       test.style.backgroundImage = `url(${Muggy})`;
     }
 
-    function mouseOut1() {
-      let idOfThing = document.getElementById('1');
-      idOfThing.style.color = 'blue';
-      idOfThing.classList.remove('hoverClass');
-    }
-
     function mouseIn2() {
-      let idOfThing = document.getElementById('2');
+      let idOfThing = document.getElementById('Uncanny');
       idOfThing.style.color = 'red';
       idOfThing.classList.add('hoverClass');
 
       let test = document.querySelector('.bioPic');
       test.style.backgroundImage = `url(${Uncanny})`;
     }
-
-    function mouseOut2() {
-      let idOfThing = document.getElementById('2');
-      idOfThing.style.color = 'blue';
-      idOfThing.classList.remove('hoverClass');
-    }
-
-
 
 
     return (
@@ -86,9 +71,10 @@ class AboutUs extends React.Component {
       <h1 className='aboutHeader'>Our Team</h1>
       <div className='bioLinks'>
       <ul>
-      <li className='bioLI' id='0' onMouseEnter={mouseIn0} onMouseLeave={mouseOut0}><h1>Gary</h1></li>
-      <li className='bioLI' id='1' onMouseEnter={mouseIn1} onMouseLeave={mouseOut1}><h1>Muggy</h1></li>
-      <li className='bioLI' id='2' onMouseEnter={mouseIn2} onMouseLeave={mouseOut2}><h1>Uncanny</h1></li>
+      <li className='bioLI' id='Gary' onClick={this.changeHighlightedID}><h1>Gary</h1></li>
+      <li className='bioLI' id='Muggy' onClick={this.changeHighlightedID}><h1>Muggy</h1></li>
+      <li className='bioLI' id='Uncanny' onClick={this.changeHighlightedID}><h1>Uncanny</h1></li>
+      // Ben Recco: {() => this.highlightedID(3)}
 
 
 
@@ -98,7 +84,10 @@ class AboutUs extends React.Component {
       </div>
 
       <div className='bioProfile'>
-      <BioProfile/>
+      <BioProfile highlightedID={this.state.highlightedID}/>
+
+
+
       </div>
 
 
